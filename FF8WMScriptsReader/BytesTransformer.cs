@@ -8,23 +8,9 @@ namespace FF8WMScriptsReader
 {
     class BytesTransformer
     {
+        Opcodes opcodes = new Opcodes();
         List<string> scriptsList = new List<string>();
         private bool isReversed = false;
-        Dictionary<string, string> knownOpcodes = new Dictionary<string, string>()
-        {
-            {"01", "Start"},
-            {"02", "StoryGreaterThan(storyProgress)"},
-            {"03", "StoryLessThan(storyProgress)"},
-            {"04", "IsActivated"},
-            {"05", "Return"},
-            {"06", "SetRegion(regionID)"},
-            {"08", "MapJump(mapID)"},
-            {"09", "PlayerModel(modelID)"},
-            {"1F", "DrawTextBox(textBoxID, position?)"},
-            {"26", "Type(value)"},
-            {"2B", "Encounter(encID)"},
-            {"16", "End"},
-        };
 
         public List<string> TransformString(string rawBytes, bool isReverseChecked = false)
         {
@@ -45,7 +31,6 @@ namespace FF8WMScriptsReader
             }
 
             return scriptsList;
-            // return result;
         }
 
         private string FindScripts(string rawString = "")
@@ -53,17 +38,13 @@ namespace FF8WMScriptsReader
             if (isReversed)
                 return "";
 
-            string scriptsRange = "";
-            scriptsRange = FindScriptsRange(rawString);
-
+            string scriptsRange = FindScriptsRange(rawString);
             int opCodesNumber = scriptsRange.Length / 8;
-
             string onlyScripts = "";
+
             for (int i = 0; i < opCodesNumber; i++)
             {
                 string opCode = scriptsRange.Substring(i * 8, 4);
-
-                
             }
 
             return scriptsRange;
@@ -71,16 +52,23 @@ namespace FF8WMScriptsReader
 
         private string FindScriptsRange(string rawString = "")
         {
-            int firstScriptIndex = 0;
-            int lastScriptIndex = 0;
-            firstScriptIndex = rawString.IndexOf("01FF0000");
-            lastScriptIndex = rawString.LastIndexOf("16FF0000");
+            int firstScriptIndex = rawString.IndexOf("01FF0000");
+            int lastScriptIndex = rawString.LastIndexOf("16FF0000");
             int lengthOfScripts = lastScriptIndex - firstScriptIndex;
-            string scriptsRange = "";
-            scriptsRange = rawString.Substring(firstScriptIndex, lengthOfScripts);
-            return scriptsRange;
+            return rawString.Substring(firstScriptIndex, lengthOfScripts);
         }
 
+
+        private string GetParams(string opcode)
+        {
+            string firstByte = opcode.Substring(4, 2);
+            string secondByte = opcode.Substring(6, 2);
+            string paramsConverted = secondByte + firstByte;
+            string paramReady = Convert.ToInt32(paramsConverted, 16).ToString();
+            if (paramReady == "0")
+                return "";
+            return paramReady;
+        }
 
         private string SplitToRows(string script = "")
         {
@@ -88,7 +76,6 @@ namespace FF8WMScriptsReader
             string noParamsOpcode = "";
             string splittedOpcodes = "";
             int opCodesNumber = script.Length / 8;
-            // splittedOpcodes += "   Script #" + scriptsList.Count + " " + NameIfKnown() + Environment.NewLine;
             for (int i = 0; i < opCodesNumber; i++)
             {
                 currentOpcode = script.Substring(i * 8, 8);
@@ -102,25 +89,26 @@ namespace FF8WMScriptsReader
                 {
                     noParamsOpcode = currentOpcode.Substring(0, 2);
                 }
-                splittedOpcodes += DecipherOpcode(noParamsOpcode) + Environment.NewLine;
+                splittedOpcodes += DecipherOpcode(noParamsOpcode) + 
+                    "(" + GetParams(currentOpcode) + ")" + Environment.NewLine;
             }
 
             if (isReversed)
-                splittedOpcodes += "0000FF16 End" + Environment.NewLine + Environment.NewLine;
+                splittedOpcodes += "0000FF16 End()" + Environment.NewLine + Environment.NewLine;
             else
-                splittedOpcodes += "16FF0000 End" + Environment.NewLine + Environment.NewLine;
+                splittedOpcodes += "16FF0000 End()" + Environment.NewLine + Environment.NewLine;
             scriptsList.Add(splittedOpcodes);
             return splittedOpcodes;
         }
 
         private string DecipherOpcode(string noParamsOpcode)
         {
-            string decipheredOpcode = "";
-            foreach (var opcode in knownOpcodes)
+            string decipheredOpcode = " Unknown";
+            foreach (var opcode in opcodes.knownOpcodes)
             {
                 if (noParamsOpcode == opcode.Key)
                 {
-                    decipheredOpcode += " " + opcode.Value;
+                    decipheredOpcode = " " + opcode.Value;
                     break;
                 }
             }

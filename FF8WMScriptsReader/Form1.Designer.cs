@@ -39,11 +39,12 @@ namespace FF8WMScriptsReader
             this.scriptsListBox = new System.Windows.Forms.ListBox();
             this.OutputTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ConverterButton
             // 
-            this.ConverterButton.Location = new System.Drawing.Point(158, 59);
+            this.ConverterButton.Location = new System.Drawing.Point(158, 12);
             this.ConverterButton.Name = "ConverterButton";
             this.ConverterButton.Size = new System.Drawing.Size(75, 23);
             this.ConverterButton.TabIndex = 0;
@@ -54,7 +55,7 @@ namespace FF8WMScriptsReader
             // rawBytesTextBox
             // 
             this.rawBytesTextBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rawBytesTextBox.Location = new System.Drawing.Point(12, 110);
+            this.rawBytesTextBox.Location = new System.Drawing.Point(11, 62);
             this.rawBytesTextBox.Multiline = true;
             this.rawBytesTextBox.Name = "rawBytesTextBox";
             this.rawBytesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -64,16 +65,16 @@ namespace FF8WMScriptsReader
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 85);
+            this.label1.Location = new System.Drawing.Point(9, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 15);
+            this.label1.Size = new System.Drawing.Size(63, 15);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Raw Bytes";
+            this.label1.Text = "Raw Bytes:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(395, 85);
+            this.label2.Location = new System.Drawing.Point(394, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 15);
             this.label2.TabIndex = 4;
@@ -82,7 +83,7 @@ namespace FF8WMScriptsReader
             // isReversedCheckBox
             // 
             this.isReversedCheckBox.AutoSize = true;
-            this.isReversedCheckBox.Location = new System.Drawing.Point(79, 85);
+            this.isReversedCheckBox.Location = new System.Drawing.Point(78, 41);
             this.isReversedCheckBox.Name = "isReversedCheckBox";
             this.isReversedCheckBox.Size = new System.Drawing.Size(73, 19);
             this.isReversedCheckBox.TabIndex = 5;
@@ -91,7 +92,7 @@ namespace FF8WMScriptsReader
             // 
             // importButton
             // 
-            this.importButton.Location = new System.Drawing.Point(13, 59);
+            this.importButton.Location = new System.Drawing.Point(13, 12);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(75, 23);
             this.importButton.TabIndex = 6;
@@ -107,9 +108,9 @@ namespace FF8WMScriptsReader
             // 
             this.scriptsListBox.FormattingEnabled = true;
             this.scriptsListBox.ItemHeight = 15;
-            this.scriptsListBox.Location = new System.Drawing.Point(158, 110);
+            this.scriptsListBox.Location = new System.Drawing.Point(157, 62);
             this.scriptsListBox.Name = "scriptsListBox";
-            this.scriptsListBox.Size = new System.Drawing.Size(231, 424);
+            this.scriptsListBox.Size = new System.Drawing.Size(231, 484);
             this.scriptsListBox.TabIndex = 7;
             this.scriptsListBox.SelectedIndexChanged += new System.EventHandler(this.scriptsListBox_SelectedIndexChanged);
             // 
@@ -117,13 +118,13 @@ namespace FF8WMScriptsReader
             // 
             this.OutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OutputTextBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OutputTextBox.Location = new System.Drawing.Point(395, 110);
+            this.OutputTextBox.Location = new System.Drawing.Point(394, 62);
             this.OutputTextBox.MaximumSize = new System.Drawing.Size(2000, 2000);
             this.OutputTextBox.MinimumSize = new System.Drawing.Size(50, 50);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.OutputTextBox.Size = new System.Drawing.Size(431, 431);
+            this.OutputTextBox.Size = new System.Drawing.Size(423, 484);
             this.OutputTextBox.TabIndex = 3;
             this.OutputTextBox.Resize += new System.EventHandler(this.OutputTextBox_Resize);
             // 
@@ -138,12 +139,22 @@ namespace FF8WMScriptsReader
             this.panel1.Size = new System.Drawing.Size(0, 0);
             this.panel1.TabIndex = 8;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(158, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Scripts List:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(829, 553);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.OutputTextBox);
             this.Controls.Add(this.scriptsListBox);
@@ -173,6 +184,7 @@ namespace FF8WMScriptsReader
         private System.Windows.Forms.ListBox scriptsListBox;
         private System.Windows.Forms.TextBox OutputTextBox;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
