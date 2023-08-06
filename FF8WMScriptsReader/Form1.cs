@@ -26,7 +26,7 @@ namespace FF8WMScriptsReader
 
         private void ConvertButton(object sender, EventArgs e)
         {
-            string output = bytesTransformer.Transform(rawBytesTextBox.Text);
+            string output = bytesTransformer.Transform(rawBytesTextBox.Text, isReversedCheckBox.Checked);
             OutputTextBox.Text = output;
         }
     }

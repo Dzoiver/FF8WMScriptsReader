@@ -34,6 +34,7 @@ namespace FF8WMScriptsReader
             this.label1 = new System.Windows.Forms.Label();
             this.OutputTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.isReversedCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ConverterButton
@@ -82,11 +83,22 @@ namespace FF8WMScriptsReader
             this.label2.TabIndex = 4;
             this.label2.Text = "Script viewer";
             // 
+            // isReversedCheckBox
+            // 
+            this.isReversedCheckBox.AutoSize = true;
+            this.isReversedCheckBox.Location = new System.Drawing.Point(79, 85);
+            this.isReversedCheckBox.Name = "isReversedCheckBox";
+            this.isReversedCheckBox.Size = new System.Drawing.Size(73, 19);
+            this.isReversedCheckBox.TabIndex = 5;
+            this.isReversedCheckBox.Text = "Reversed";
+            this.isReversedCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.isReversedCheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.OutputTextBox);
             this.Controls.Add(this.label1);
@@ -107,6 +119,7 @@ namespace FF8WMScriptsReader
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox OutputTextBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox isReversedCheckBox;
     }
 }
 

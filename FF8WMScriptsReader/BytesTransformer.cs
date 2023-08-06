@@ -13,49 +13,64 @@ namespace FF8WMScriptsReader
         {
             knownOpcodes = new Dictionary<string, string>()
             {
-                {"01FF", "Start"},
-                {"02FF", "StoryGreaterThan(storyProgress)"},
-                {"03FF", "StoryLessThan(storyProgress)"},
-                {"04FF", "IsTouching"},
-                {"05FF", "Return"},
-                {"06FF", "SetRegion(regionID)"},
-                {"08FF", "MapJump(mapID)"},
-                {"09FF", "PlayerModel(modelID)"},
-                {"1FFF", "DrawTextBox(textBoxID, position?)"},
-                {"26FF", "Type(value)"},
-                {"2BFF", "Encounter(encID)"},
-                {"16FF", "End"},
+                {"01", "Start"},
+                {"02", "StoryGreaterThan(storyProgress)"},
+                {"03", "StoryLessThan(storyProgress)"},
+                {"04", "IsTouching"},
+                {"05", "Return"},
+                {"06", "SetRegion(regionID)"},
+                {"08", "MapJump(mapID)"},
+                {"09", "PlayerModel(modelID)"},
+                {"1F", "DrawTextBox(textBoxID, position?)"},
+                {"26", "Type(value)"},
+                {"2B", "Encounter(encID)"},
+                {"16", "End"},
             };
         }
-        public string Transform(string rawBytes)
+        public string Transform(string rawBytes, bool isReversed = false)
         {
             rawBytes = rawBytes.Replace(" ", ""); // Remove spaces if there is ones
-            // Split opcodes to each row
-            int scriptsNumber = rawBytes.Length / 8;
-            Console.WriteLine(scriptsNumber);
+            string[] scripts;
             string result = "";
-            string currentOpcode = "";
-            string noParamsOpcode = "";
-            for (int i = 0; i < scriptsNumber; i++)
+            if (isReversed)
+                scripts = rawBytes.Split("0000FF16");
+            else
+                scripts = rawBytes.Split("16FF0000");
+
+            for (int j = 0; j < scripts.Length - 1; j++)
             {
-                currentOpcode = rawBytes.Substring(i * 8, 8);
-                result += currentOpcode;
-                
-                noParamsOpcode = currentOpcode.Substring(0, 4);
-                foreach (var opcode in knownOpcodes)
+                result += "   Script #" + j + Environment.NewLine;
+                int opCodesNumber = scripts[j].Length / 8; // Split opcodes to each row
+                string currentOpcode = "";
+                string noParamsOpcode = "";
+                //result += "Script #" + i + Environment.NewLine;
+                for (int i = 0; i < opCodesNumber; i++)
                 {
-                    if (noParamsOpcode == opcode.Key)
+                    currentOpcode = rawBytes.Substring(i * 8, 8);
+                    result += currentOpcode;
+
+                    if (isReversed)
                     {
-                        result += " " + opcode.Value;
-                        break;
+                        noParamsOpcode = currentOpcode.Substring(6, 2);
                     }
+                    else
+                    {
+                        noParamsOpcode = currentOpcode.Substring(0, 2);
+                    }
+                    foreach (var opcode in knownOpcodes)
+                    {
+                        if (noParamsOpcode == opcode.Key)
+                        {
+                            result += " " + opcode.Value;
+                            break;
+                        }
+                    }
+
+                    result += Environment.NewLine;
                 }
-                
                 result += Environment.NewLine;
             }
             return result;
         }
-
-
     }
 }
