@@ -53,6 +53,7 @@ namespace FF8WMScriptsReader
             this.rawBytesTextBox.Location = new System.Drawing.Point(12, 106);
             this.rawBytesTextBox.Multiline = true;
             this.rawBytesTextBox.Name = "rawBytesTextBox";
+            this.rawBytesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.rawBytesTextBox.Size = new System.Drawing.Size(365, 332);
             this.rawBytesTextBox.TabIndex = 1;
             // 
@@ -71,6 +72,7 @@ namespace FF8WMScriptsReader
             this.OutputTextBox.Location = new System.Drawing.Point(423, 106);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
+            this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.OutputTextBox.Size = new System.Drawing.Size(365, 332);
             this.OutputTextBox.TabIndex = 3;
             // 

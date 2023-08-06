@@ -37,6 +37,7 @@ namespace FF8WMScriptsReader
             else
                 scripts = rawBytes.Split("16FF0000");
 
+            
             for (int j = 0; j < scripts.Length - 1; j++)
             {
                 result += "   Script #" + j + Environment.NewLine;
@@ -46,7 +47,7 @@ namespace FF8WMScriptsReader
                 //result += "Script #" + i + Environment.NewLine;
                 for (int i = 0; i < opCodesNumber; i++)
                 {
-                    currentOpcode = rawBytes.Substring(i * 8, 8);
+                    currentOpcode = scripts[j].Substring(i * 8, 8);
                     result += currentOpcode;
 
                     if (isReversed)
@@ -68,7 +69,10 @@ namespace FF8WMScriptsReader
 
                     result += Environment.NewLine;
                 }
-                result += Environment.NewLine;
+                if (isReversed)
+                    result += "0000FF16 End" + Environment.NewLine + Environment.NewLine;
+                else
+                    result += "16FF0000 End" + Environment.NewLine + Environment.NewLine;
             }
             return result;
         }
