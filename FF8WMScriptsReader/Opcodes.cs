@@ -24,10 +24,10 @@ namespace FF8WMScriptsReader
             {"0C", "Case"}, // Marks a block for a Switch case
             {"0D", "UnknownD"},
             {"0E", "UnknownE"},
-            {"0F", "UnknownF"},
-            {"10", "Unknown10"},
-            {"11", "InArea"}, // Weird one. Creates some spot inside the trigger. The bigger the number, the smaller the area
-            {"12", "Unknown12"},
+            {"0F", "PositionXLessThan"}, // Checks if trigger's x position is less than the number 
+            {"10", "PositionYLessThan?"}, // Assumption
+            {"11", "PositionXGreaterThan"}, // Checks if trigger's x position is greater than the number 
+            {"12", "PositionYGreaterThan?"}, // Assumption
             {"13", "Unknown13"},
             {"14", "Unknown14"},
             {"15", "LoadField2"}, // The difference with LoadField is unknown yet.
@@ -41,7 +41,7 @@ namespace FF8WMScriptsReader
             {"1D", "Unknown1D"},
             {"1E", "Unknown1E"},
             {"1F", "DrawTextBox"}, // Draws the text box. 1 Argument is for ID, 2 Argument is kinda like position
-            {"20", "ReadInput"}, // Reads an input. 64(0x40) = cross, 128(0x80) = square, 255(0xFF) = triangle, 32(0x20) = circle. // 1 L2, 2 R2, 4 L1
+            {"20", "ReadInput"}, // Reads an input. 64(0x40) = cross, 128(0x80) = square, 16(0x08) = triangle, 32(0x20) = circle. // 1 L2, 2 R2, 4 L1
             {"21", "Unknown21"},
             {"22", "Unknown22"},
             {"23", "Unknown23"},
@@ -49,7 +49,7 @@ namespace FF8WMScriptsReader
             {"25", "Unknown25"},
             {"26", "Type"}, // Some parameter for a text box. Also teleports to trains, ragnarok.
             {"27", "Unknown27"},
-            {"28", "LoadField3"}, // 
+            {"28", "LoadFieldVehicle"}, // Load field when enter with a vehicle
             {"29", "Unknown29"},
             {"2A", "Unknown2A"},
             {"2B", "Encounter"}, // Starts the encounter

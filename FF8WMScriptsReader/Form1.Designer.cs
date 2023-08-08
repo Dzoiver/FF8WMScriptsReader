@@ -107,6 +107,7 @@ namespace FF8WMScriptsReader
             // scriptsListBox
             // 
             this.scriptsListBox.FormattingEnabled = true;
+            this.scriptsListBox.HorizontalScrollbar = true;
             this.scriptsListBox.ItemHeight = 15;
             this.scriptsListBox.Location = new System.Drawing.Point(157, 62);
             this.scriptsListBox.Name = "scriptsListBox";
@@ -123,9 +124,10 @@ namespace FF8WMScriptsReader
             this.OutputTextBox.MinimumSize = new System.Drawing.Size(50, 50);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
-            this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.OutputTextBox.Size = new System.Drawing.Size(423, 484);
             this.OutputTextBox.TabIndex = 3;
+            this.OutputTextBox.WordWrap = false;
             this.OutputTextBox.Resize += new System.EventHandler(this.OutputTextBox_Resize);
             // 
             // panel1
