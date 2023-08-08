@@ -10,7 +10,7 @@ namespace FF8WMScriptsReader
     {
         public List<string> Names = new List<string>()
         {
-            "Shumi village",
+            "Shumi Village",
             "Chocobo (Shumi)",
             "Chocobo Forest (Trabia continent)",
             "Trabia Garden",
@@ -20,7 +20,7 @@ namespace FF8WMScriptsReader
             "Dollet",
             "Deling",
             "Galbadia Garden (Balamb Garden broke)",
-            "LD2 Forest (Timber)",
+            "Timber Forest (LD2)",
             "Balamb",
             "Balamb Garden (Left side)",
             "Balamb Garden (Right side)",
@@ -35,7 +35,7 @@ namespace FF8WMScriptsReader
             "Salt lake",
             "Lunatic Pandora Laboratory",
             "Winhill Front",
-            "Esthar (With cutscene)",
+            "Esthar Airstation",
             "Esthar (Car)",
             "Esthar (Car)",
             "Esthar (Car)",

@@ -36,8 +36,11 @@ namespace FF8WMScriptsReader
             foreach (string script in scriptsList)
             {
                 scriptsListBox.Items.Add(scriptCounter + " " + NameIfKnown());
+                OutputTextBox.Text += scriptsList[scriptCounter];
                 scriptCounter++;
             }
+
+
         }
 
         private void importButton_Click(object sender, EventArgs e)
@@ -56,7 +59,7 @@ namespace FF8WMScriptsReader
             region1 = region1.Replace("-", "");
             region2 = region2.Replace("-", "");
             region3 = region3.Replace("-", "");
-            rawBytesTextBox.Text += region1 + region2;
+            rawBytesTextBox.Text += region1 + region2 + region3;
         }
         private string NameIfKnown()
         {

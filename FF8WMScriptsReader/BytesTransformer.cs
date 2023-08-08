@@ -9,6 +9,7 @@ namespace FF8WMScriptsReader
     class BytesTransformer
     {
         Opcodes opcodes = new Opcodes();
+        Parameters paramsConverter = new Parameters();
         List<string> scriptsList = new List<string>();
         private bool isReversed = false;
 
@@ -58,18 +59,6 @@ namespace FF8WMScriptsReader
             return rawString.Substring(firstScriptIndex, lengthOfScripts);
         }
 
-
-        private string GetParams(string opcode)
-        {
-            string firstByte = opcode.Substring(4, 2);
-            string secondByte = opcode.Substring(6, 2);
-            string paramsConverted = secondByte + firstByte;
-            string paramReady = Convert.ToInt32(paramsConverted, 16).ToString();
-            if (paramReady == "0")
-                return "";
-            return paramReady;
-        }
-
         private string SplitToRows(string script = "")
         {
             string currentOpcode = "";
@@ -90,7 +79,7 @@ namespace FF8WMScriptsReader
                     noParamsOpcode = currentOpcode.Substring(0, 2);
                 }
                 splittedOpcodes += DecipherOpcode(noParamsOpcode) + 
-                    "(" + GetParams(currentOpcode) + ")" + Environment.NewLine;
+                    "(" + paramsConverter.TryGetStringParams(currentOpcode) + ")" + Environment.NewLine;
             }
 
             if (isReversed)
