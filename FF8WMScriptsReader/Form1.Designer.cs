@@ -30,10 +30,7 @@ namespace FF8WMScriptsReader
         private void InitializeComponent()
         {
             this.ConverterButton = new System.Windows.Forms.Button();
-            this.rawBytesTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.isReversedCheckBox = new System.Windows.Forms.CheckBox();
             this.importButton = new System.Windows.Forms.Button();
             this.openWmsetxxDialogue = new System.Windows.Forms.OpenFileDialog();
             this.scriptsListBox = new System.Windows.Forms.ListBox();
@@ -44,7 +41,7 @@ namespace FF8WMScriptsReader
             // 
             // ConverterButton
             // 
-            this.ConverterButton.Location = new System.Drawing.Point(158, 12);
+            this.ConverterButton.Location = new System.Drawing.Point(94, 12);
             this.ConverterButton.Name = "ConverterButton";
             this.ConverterButton.Size = new System.Drawing.Size(75, 23);
             this.ConverterButton.TabIndex = 0;
@@ -52,43 +49,14 @@ namespace FF8WMScriptsReader
             this.ConverterButton.UseVisualStyleBackColor = true;
             this.ConverterButton.Click += new System.EventHandler(this.ConvertButton);
             // 
-            // rawBytesTextBox
-            // 
-            this.rawBytesTextBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rawBytesTextBox.Location = new System.Drawing.Point(11, 62);
-            this.rawBytesTextBox.Multiline = true;
-            this.rawBytesTextBox.Name = "rawBytesTextBox";
-            this.rawBytesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.rawBytesTextBox.Size = new System.Drawing.Size(140, 141);
-            this.rawBytesTextBox.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Raw Bytes:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(394, 42);
+            this.label2.Location = new System.Drawing.Point(250, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 15);
             this.label2.TabIndex = 4;
             this.label2.Text = "Script viewer:";
-            // 
-            // isReversedCheckBox
-            // 
-            this.isReversedCheckBox.AutoSize = true;
-            this.isReversedCheckBox.Location = new System.Drawing.Point(78, 41);
-            this.isReversedCheckBox.Name = "isReversedCheckBox";
-            this.isReversedCheckBox.Size = new System.Drawing.Size(73, 19);
-            this.isReversedCheckBox.TabIndex = 5;
-            this.isReversedCheckBox.Text = "Reversed";
-            this.isReversedCheckBox.UseVisualStyleBackColor = true;
             // 
             // importButton
             // 
@@ -98,7 +66,7 @@ namespace FF8WMScriptsReader
             this.importButton.TabIndex = 6;
             this.importButton.Text = "Import";
             this.importButton.UseVisualStyleBackColor = true;
-            this.importButton.Click += new System.EventHandler(this.importButton_Click);
+            this.importButton.Click += new System.EventHandler(this.ImportButton_Click);
             // 
             // openWmsetxxDialogue
             // 
@@ -106,10 +74,12 @@ namespace FF8WMScriptsReader
             // 
             // scriptsListBox
             // 
+            this.scriptsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.scriptsListBox.FormattingEnabled = true;
             this.scriptsListBox.HorizontalScrollbar = true;
             this.scriptsListBox.ItemHeight = 15;
-            this.scriptsListBox.Location = new System.Drawing.Point(157, 62);
+            this.scriptsListBox.Location = new System.Drawing.Point(13, 60);
             this.scriptsListBox.Name = "scriptsListBox";
             this.scriptsListBox.Size = new System.Drawing.Size(231, 484);
             this.scriptsListBox.TabIndex = 7;
@@ -117,15 +87,17 @@ namespace FF8WMScriptsReader
             // 
             // OutputTextBox
             // 
-            this.OutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.OutputTextBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OutputTextBox.Location = new System.Drawing.Point(394, 62);
+            this.OutputTextBox.Location = new System.Drawing.Point(250, 60);
             this.OutputTextBox.MaximumSize = new System.Drawing.Size(2000, 2000);
             this.OutputTextBox.MinimumSize = new System.Drawing.Size(50, 50);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.OutputTextBox.Size = new System.Drawing.Size(423, 484);
+            this.OutputTextBox.Size = new System.Drawing.Size(567, 484);
             this.OutputTextBox.TabIndex = 3;
             this.OutputTextBox.WordWrap = false;
             this.OutputTextBox.Resize += new System.EventHandler(this.OutputTextBox_Resize);
@@ -144,7 +116,7 @@ namespace FF8WMScriptsReader
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(158, 42);
+            this.label3.Location = new System.Drawing.Point(12, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 15);
             this.label3.TabIndex = 9;
@@ -155,17 +127,13 @@ namespace FF8WMScriptsReader
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(829, 553);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.OutputTextBox);
             this.Controls.Add(this.scriptsListBox);
             this.Controls.Add(this.importButton);
-            this.Controls.Add(this.isReversedCheckBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.rawBytesTextBox);
             this.Controls.Add(this.ConverterButton);
             this.Name = "Form1";
             this.Text = "World Map Script Viewer";
@@ -178,10 +146,7 @@ namespace FF8WMScriptsReader
         #endregion
 
         private System.Windows.Forms.Button ConverterButton;
-        private System.Windows.Forms.TextBox rawBytesTextBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox isReversedCheckBox;
         private System.Windows.Forms.Button importButton;
         private System.Windows.Forms.OpenFileDialog openWmsetxxDialogue;
         private System.Windows.Forms.ListBox scriptsListBox;

@@ -29,37 +29,35 @@ namespace FF8WMScriptsReader
 
         private void ConvertButton(object sender, EventArgs e)
         {
-            bytesTransformer.TransformString(region1, isReversedCheckBox.Checked);
-            bytesTransformer.TransformString(region2, isReversedCheckBox.Checked);
-            scriptsList = bytesTransformer.TransformString(region3, isReversedCheckBox.Checked);
+            bytesTransformer.TransformString(region1, false);
+            bytesTransformer.TransformString(region2, false);
+            scriptsList = bytesTransformer.TransformString(region3, false);
             int scriptCounter = 0;
+            string outputText = "";
             foreach (string script in scriptsList)
             {
                 scriptsListBox.Items.Add(scriptCounter + " " + NameIfKnown());
-                OutputTextBox.Text += scriptsList[scriptCounter];
+                outputText += scriptsList[scriptCounter];
                 scriptCounter++;
             }
-
-
+            OutputTextBox.Text = outputText;
         }
 
-        private void importButton_Click(object sender, EventArgs e)
+        private void ImportButton_Click(object sender, EventArgs e)
         {
             if (openWmsetxxDialogue.ShowDialog() == DialogResult.Cancel)
                 return;
-
-            string filename = openWmsetxxDialogue.FileName;
             
+            string filename = openWmsetxxDialogue.FileName;
             byte[] rawBytes = File.ReadAllBytes(filename);
-
-            region1 = BitConverter.ToString(rawBytes, 3072, 2700); // 37
-            region2 = BitConverter.ToString(rawBytes, 8072, 550); // 3
-            region3 = BitConverter.ToString(rawBytes, 110500, 7500); // 90
-
+            
+            region1 = BitConverter.ToString(rawBytes, 3072, 2550); // 37
+            region2 = BitConverter.ToString(rawBytes, 8400, 200); // 3
+            region3 = BitConverter.ToString(rawBytes, 110850, 6750); // 90
+            
             region1 = region1.Replace("-", "");
             region2 = region2.Replace("-", "");
             region3 = region3.Replace("-", "");
-            rawBytesTextBox.Text += region1 + region2 + region3;
         }
         private string NameIfKnown()
         {
