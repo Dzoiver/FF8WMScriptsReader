@@ -1,5 +1,5 @@
-# FF8WMScriptsReader
-Displays FF8 World Map Scripts in human readable form
+# Final Fantasy 8 World Map Scripts viewer
+Displays scripts in human readable form.
 
 - Extract wmsetxx.obj from world.fs (you can use Deling for it). 
 - Open the program and import that file
